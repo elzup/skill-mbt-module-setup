@@ -6,6 +6,7 @@ description: "Set up a new MoonBit module project for npm publishing from the el
 # MoonBit Module Setup
 
 Set up a new MoonBit module project from `elzup/template-mbt-module`. The template provides:
+
 - MoonBit source compiled to ESM + CJS via `scripts/build.js`
 - TypeScript type definitions
 - Vitest test suite + MoonBit inline tests
@@ -22,6 +23,7 @@ Set up a new MoonBit module project from `elzup/template-mbt-module`. The templa
 ### Step 1: Gather Project Info
 
 Ask the user for:
+
 - **Module name**: MoonBit module name (e.g. `username/my-lib`)
 - **npm name**: npm package name (e.g. `my-lib`)
 - **GitHub repo**: e.g. `username/my-lib`
@@ -73,6 +75,7 @@ moon check
 ```
 
 Build will fail until the user adds actual MoonBit functions and exports. Inform the user of next steps:
+
 1. Write MoonBit code in `src/lib/lib.mbt`
 2. Add export names in `src/lib/moon.pkg.json` under `link.js.exports`
 3. Add TypeScript declarations in `types/index.d.ts`
@@ -81,13 +84,13 @@ Build will fail until the user adds actual MoonBit functions and exports. Inform
 
 ## Key Files Reference
 
-| File | Purpose |
-|---|---|
-| `moon.mod.json` | MoonBit module metadata (name, version, license) |
-| `src/lib/moon.pkg.json` | JS export config (`link.js.exports` + `format`) |
-| `src/lib/lib.mbt` | MoonBit source code |
-| `scripts/build.js` | Builds ESM + CJS from MoonBit source |
-| `types/index.d.ts` | TypeScript type definitions |
-| `test/index.test.ts` | Vitest test suite |
-| `package.json` | npm package config (dual ESM/CJS exports) |
-| `.github/workflows/node.yml` | CI pipeline |
+| File                         | Purpose                                          |
+| ---------------------------- | ------------------------------------------------ |
+| `moon.mod.json`              | MoonBit module metadata (name, version, license) |
+| `src/lib/moon.pkg.json`      | JS export config (`link.js.exports` + `format`)  |
+| `src/lib/lib.mbt`            | MoonBit source code                              |
+| `scripts/build.js`           | Builds ESM + CJS from MoonBit source             |
+| `types/index.d.ts`           | TypeScript type definitions                      |
+| `test/index.test.ts`         | Vitest test suite                                |
+| `package.json`               | npm package config (dual ESM/CJS exports)        |
+| `.github/workflows/node.yml` | CI pipeline                                      |
