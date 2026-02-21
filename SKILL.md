@@ -17,8 +17,8 @@ Set up a new MoonBit module project from `elzup/template-mbt-module`. The templa
 
 1. Gather project info from the user
 2. Create the project (GitHub template or local copy)
-3. Run `scripts/customize.py` to update names and clean sample code
-4. Install dependencies and verify build
+3. Customize files (edit directly, no external script needed)
+4. Install dependencies and verify
 
 ### Step 1: Gather Project Info
 
@@ -46,25 +46,106 @@ ghq get <github-repo>
 ```bash
 cp -r ~/.ghq/github.com/elzup/template-mbt-module <target-dir>
 cd <target-dir>
-rm -rf .git _build target node_modules
+rm -rf .git _build target node_modules .mooncakes .claude .serena
 git init
 ```
 
 ### Step 3: Customize
 
-Run the bundled customize script from the skill directory:
+Edit the following files directly in the project directory. The template uses `TODO` as placeholders.
 
-```bash
-python3 <skill-dir>/scripts/customize.py <project-dir> \
-  --module-name "<module-name>" \
-  --npm-name "<npm-name>" \
-  --author "<author>" \
-  --description "<description>" \
-  --license "<license>" \
-  --github-repo "<github-repo>"
+#### 3-1. `moon.mod.json`
+
+Set `name` to the MoonBit module name, `version` to `0.0.1`, `license` to the chosen license.
+
+#### 3-2. `package.json`
+
+Replace the following fields:
+
+- `name` → npm name
+- `version` → `0.0.0`
+- `description` → description
+- `author` → author
+- `license` → license
+- `repository` → `<github-repo>`
+- `bugs.url` → `https://github.com/<github-repo>/issues`
+- `homepage` → `https://github.com/<github-repo>#readme`
+
+#### 3-3. `src/lib/lib.mbt`
+
+Clear the file (empty). User will write their own code here.
+
+#### 3-4. `src/lib/moon.pkg.json`
+
+Replace with:
+
+```json
+{
+  "link": {
+    "js": {
+      "exports": [],
+      "format": "esm"
+    }
+  }
+}
 ```
 
-This updates: `moon.mod.json`, `package.json`, `readme.md`, and cleans sample code from `src/lib/lib.mbt`, `src/lib/moon.pkg.json`, `types/index.d.ts`, `test/index.test.ts`.
+#### 3-5. `types/index.d.ts`
+
+Clear the file (empty). User will add type definitions.
+
+#### 3-6. `test/index.test.ts`
+
+Replace with:
+
+```ts
+import { describe, expect, it } from 'vitest'
+
+// import { } from '../lib/esm/index.js'
+
+describe('TODO', () => {
+  it.todo('implement tests')
+})
+```
+
+#### 3-7. `readme.md`
+
+Replace with:
+
+```md
+# <npm-name>
+
+> <description>
+
+## Install
+
+\`\`\`
+$ npm install <npm-name>
+\`\`\`
+
+## Usage
+
+\`\`\`js
+import { } from '<npm-name>'
+\`\`\`
+
+## License
+
+<license>
+```
+
+#### 3-8. `.gitignore`
+
+Ensure the file contains at least:
+
+```
+node_modules
+coverage
+/lib
+target
+_build
+.mooncakes
+```
 
 ### Step 4: Verify Setup
 
